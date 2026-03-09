@@ -161,4 +161,4 @@ carSearch.addEventListener('input', (e) => {
 
 // Initial Render
 updateUI();
-console.log("ParkX System Initialized with DSA Components.");
+console.log("Intelligent Car Parking Space Allocation System Initialized with DSA Components.");

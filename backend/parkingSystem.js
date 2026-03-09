@@ -2,7 +2,7 @@
  * =============================================================
  * BACKEND: ParkingSystem — Core System Controller
  * =============================================================
- * This is the main backend engine for ParkX.
+ * This is the main backend engine for Intelligent Car Parking Space Allocation.
  * It ties together all algorithms and data structures:
  *
  *   HashMap       — O(1) slot CRUD (hashMap.js)
