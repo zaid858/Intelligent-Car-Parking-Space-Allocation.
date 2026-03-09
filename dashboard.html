@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkX — Dashboard</title>
+    <meta name="description" content="Manage parking slots in real time. Book, release, and sort slots with one click.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- ── Navbar ─────────────────────────────────────── -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-square-parking"></i> ParkX
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link"><i class="fas fa-house"></i> Home</a></li>
+            <li><a href="dashboard.html" class="nav-link active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="search.html" class="nav-link"><i class="fas fa-magnifying-glass"></i> Search</a></li>
+            <li><a href="logs.html" class="nav-link"><i class="fas fa-clock-rotate-left"></i> Logs</a></li>
+        </ul>
+    </nav>
+
+    <!-- ── Page Content ───────────────────────────────── -->
+    <div class="page-wrap">
+        <!-- Stats Row -->
+        <div class="stats-row" id="statsRow">
+            <div class="stat-card glass">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-val" id="statTotal">—</div>
+                <div class="stat-lbl">Total Slots</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color:var(--accent);">✅</div>
+                <div class="stat-val" id="statAvail" style="color:var(--accent);">—</div>
+                <div class="stat-lbl">Available</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color:var(--danger);">🚗</div>
+                <div class="stat-val" id="statOccupied" style="color:var(--danger);">—</div>
+                <div class="stat-lbl">Occupied</div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color:var(--warning);">💰</div>
+                <div class="stat-val" id="statRevenue" style="color:var(--warning);">—</div>
+                <div class="stat-lbl">Live Revenue</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Layout -->
+        <div class="dash-layout">
+            <!-- Main: Slot Grid -->
+            <section class="glass" style="padding: 1.75rem;">
+                <h2 class="section-title">Parking Layout</h2>
+                <p class="section-sub">Click an <span style="color:var(--accent)">available</span> slot to book · Click
+                    an <span style="color:var(--danger)">occupied</span> slot to release</p>
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <select id="sortField" class="form-control" style="max-width:160px;">
+                        <option value="">Sort By…</option>
+                        <option value="price-asc">Price ↑</option>
+                        <option value="price-desc">Price ↓</option>
+                        <option value="id-asc">ID ↑</option>
+                        <option value="type-asc">Type A–Z</option>
+                    </select>
+                    <select id="filterStatus" class="form-control" style="max-width:150px;">
+                        <option value="">All Slots</option>
+                        <option value="available">Available only</option>
+                        <option value="occupied">Occupied only</option>
+                    </select>
+                    <button class="btn btn-ghost btn-sm" id="resetBtn">
+                        <i class="fas fa-rotate-left"></i> Reset Data
+                    </button>
+                </div>
+
+                <!-- Grid -->
+                <div class="slot-grid" id="slotGrid">
+                    <!-- injected by dashboard.js -->
+                </div>
+            </section>
+
+            <!-- Sidebar: recent logs -->
+            <aside class="dash-sidebar">
+                <div class="glass" style="padding:1.5rem;">
+                    <h3 class="section-title" style="margin-bottom:1rem;">Recent Activity</h3>
+                    <div class="log-list" id="sidebarLogs">
+                        <!-- injected by dashboard.js -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ── Booking Modal ───────────────────────────────── -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h2 id="modalTitle">Book Slot</h2>
+                <button class="modal-close" id="closeModal"><i class="fas fa-xmark"></i></button>
+            </div>
+
+            <div id="modalSlotInfo"
+                style="margin-bottom:1.25rem; padding:1rem; border-radius:var(--radius); background:rgba(99,102,241,0.07); border:1px solid rgba(99,102,241,0.15); font-size:0.875rem; color:var(--text-muted);">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="carNumber">Vehicle Plate Number *</label>
+                <input type="text" id="carNumber" class="form-control" placeholder="e.g. MH-12-AB-3456" maxlength="15">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="ownerName">Owner Name</label>
+                <input type="text" id="ownerName" class="form-control" placeholder="e.g. Rahul Sharma">
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelBooking">Cancel</button>
+                <button class="btn btn-primary" id="confirmBooking">
+                    <i class="fas fa-check"></i> Confirm Booking
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Release Confirm Modal ──────────────────────── -->
+    <div class="modal-overlay" id="releaseModal">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h2>Release Slot</h2>
+                <button class="modal-close" id="closeRelease"><i class="fas fa-xmark"></i></button>
+            </div>
+            <p style="margin-bottom:1.25rem; color:var(--text-muted); font-size:0.9rem;">
+                Are you sure you want to free up this slot?
+            </p>
+            <div id="releaseSlotInfo"
+                style="margin-bottom:1.25rem; padding:1rem; border-radius:var(--radius); background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.2); font-size:0.875rem;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelRelease">Cancel</button>
+                <button class="btn btn-danger" id="confirmRelease">
+                    <i class="fas fa-lock-open"></i> Release Slot
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-wrap" class="toast-wrap"></div>
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>

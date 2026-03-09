@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkX — Search</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <header class="topbar">
+            <div class="topbar-logo"><i class="fas fa-square-parking"></i> ParkX</div>
+            <div class="topbar-right">
+                <span class="topbar-time" id="liveClock">—</span>
+                <button class="topbar-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <span class="sidebar-section-label">Navigation</span>
+            <a href="index.html" class="sidebar-link"><i class="fas fa-table-cells"></i> Dashboard</a>
+            <a href="search.html" class="sidebar-link active"><i class="fas fa-magnifying-glass"></i> Search</a>
+            <a href="logs.html" class="sidebar-link"><i class="fas fa-clock-rotate-left"></i> Activity Logs</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <div class="page-title">Search Slots</div>
+                    <div class="page-subtitle">Find a parking slot by ID or search for a vehicle by plate number</div>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-box-wrap">
+                <input type="text" id="searchInput" class="form-control"
+                    placeholder="Enter Slot ID (e.g. S-07) or Vehicle Plate…" style="flex:1; min-width:220px;">
+
+                <select id="algoSelect" class="form-control" style="width:200px;">
+                    <option value="linear">Search All Fields</option>
+                    <option value="binary">Search by Exact Slot ID</option>
+                </select>
+
+                <button class="btn btn-primary" id="searchBtn">
+                    <i class="fas fa-magnifying-glass"></i> Search
+                </button>
+                <button class="btn btn-ghost" id="clearBtn"><i class="fas fa-xmark"></i> Clear</button>
+
+                <!-- Divider -->
+                <div style="width:1px; height:28px; background:var(--border);"></div>
+
+                <!-- Sort controls -->
+                <select id="sortField" class="form-control" style="width:140px;">
+                    <option value="price">Sort by Price</option>
+                    <option value="id">Sort by Slot ID</option>
+                    <option value="type">Sort by Type</option>
+                </select>
+                <select id="sortDir" class="form-control" style="width:120px;">
+                    <option value="asc">Ascending ↑</option>
+                    <option value="desc">Descending ↓</option>
+                </select>
+                <button class="btn btn-ghost" id="sortBtn">
+                    <i class="fas fa-arrow-up-wide-short"></i> Sort
+                </button>
+            </div>
+
+            <!-- Result summary bar -->
+            <div id="resultMeta" style="display:none; align-items:center; gap:1.25rem; flex-wrap:wrap;
+         font-size:0.82rem; color:var(--text-dim); padding:0.65rem 1rem; margin-bottom:1.25rem;
+         background:rgba(99,102,241,0.05); border:1px solid rgba(99,102,241,0.12);
+         border-radius:var(--radius-sm);">
+                <span>Results: <strong id="metaCount" style="color:var(--text);">—</strong></span>
+                <span>Status: <strong id="metaStatus" style="color:var(--text);">—</strong></span>
+            </div>
+
+            <!-- Results -->
+            <section class="card" style="padding:1.5rem;">
+                <div class="slot-grid" id="resultGrid"></div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast-wrap" class="toast-wrap"></div>
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/search.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1015 @@
+/*
+ * ================================================================
+ * PARKX — MANAGEMENT SYSTEM STYLESHEET
+ * Dark, dense, operational UI — built for managers, not marketing
+ * ================================================================
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@600;700;800&display=swap');
+
+/* ── 1. Design Tokens ── */
+:root {
+    --primary: #6366f1;
+    --primary-d: #4f46e5;
+    --primary-glow: rgba(99, 102, 241, 0.3);
+    --accent: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --sky: #0ea5e9;
+
+    --bg: #080d1a;
+    --bg-panel: rgba(13, 19, 35, 0.9);
+    --bg-card: rgba(18, 26, 46, 0.8);
+    --bg-hover: rgba(30, 41, 68, 0.9);
+    --text: #e8eeff;
+    --text-dim: #7c8aaa;
+    --text-muted: #495672;
+    --border: rgba(99, 120, 200, 0.12);
+    --border-bright: rgba(99, 120, 200, 0.25);
+
+    --radius-sm: 0.5rem;
+    --radius: 0.875rem;
+    --radius-lg: 1.25rem;
+    --blur: blur(20px);
+    --nav-h: 60px;
+    --sidebar-w: 220px;
+    --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ── 2. Reset ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(ellipse 60% 40% at 10% 10%, rgba(99, 102, 241, 0.07) 0, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(14, 165, 233, 0.05) 0, transparent 55%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    border: none;
+}
+
+/* ── 3. Glass Card ── */
+.card {
+    background: var(--bg-card);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+/* ── 4. App Shell Layout ── */
+.app-shell {
+    display: grid;
+    grid-template-rows: var(--nav-h) 1fr;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    grid-template-areas:
+        "nav  nav"
+        "side main";
+    min-height: 100vh;
+}
+
+/* ── 5. Top Navbar ── */
+.topbar {
+    grid-area: nav;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background: rgba(8, 13, 26, 0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.topbar-logo i {
+    font-size: 1.3rem;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.topbar-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    padding: 0.25rem 0.75rem;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.topbar-btn {
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.topbar-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ── 6. Sidebar ── */
+.sidebar {
+    grid-area: side;
+    padding: 1.25rem 0.75rem;
+    background: rgba(8, 13, 26, 0.85);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+}
+
+.sidebar-section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.5rem 0.75rem 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: all 0.2s;
+}
+
+.sidebar-link i {
+    width: 16px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.sidebar-link:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+}
+
+.sidebar-link.active {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ── 7. Main Content ── */
+.main-content {
+    grid-area: main;
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(100vh - var(--nav-h));
+}
+
+/* ── 8. Page Header ── */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 0.825rem;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+}
+
+/* ── 9. Stats Row ── */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    padding: 1.25rem 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-icon-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.stat-icon.blue {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary);
+}
+
+.stat-icon.green {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent);
+}
+
+.stat-icon.red {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+}
+
+.stat-icon.yellow {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+}
+
+.stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.stat-lbl {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+.stat-trend {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── 10. Toolbar ── */
+.toolbar {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.form-control {
+    background: rgba(13, 19, 35, 0.9);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.875rem;
+    color: var(--text);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.18);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    margin-bottom: 0.35rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* ── 11. Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-d);
+    box-shadow: 0 0 16px var(--primary-glow);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-dim);
+}
+
+.btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.25);
+    color: var(--danger);
+}
+
+.btn-danger:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+}
+
+/* ── 12. Slot Grid (Parking Lot) ── */
+.lot-section {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 1.25rem;
+    align-items: start;
+}
+
+@media (max-width: 1100px) {
+    .lot-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.lot-zone-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 1rem 0 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lot-zone-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+}
+
+.slot-card {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 0.5rem;
+    gap: 0.25rem;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1),
+        border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    user-select: none;
+    text-align: center;
+}
+
+.slot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.slot-card.available {
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.slot-card.available:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.1);
+}
+
+.slot-card.occupied {
+    border-color: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.04);
+}
+
+.slot-card.occupied:hover {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.slot-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dim);
+}
+
+.slot-icon {
+    font-size: 1.6rem;
+    margin: 0.1rem 0;
+    line-height: 1;
+}
+
+.slot-type-badge {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.slot-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.slot-car-tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--warning);
+    background: rgba(245, 158, 11, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    margin-top: 0.1rem;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.slot-avail-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--accent);
+    margin-top: 0.15rem;
+}
+
+/* ── 13. Sidebar Panel (Right) ── */
+.panel {
+    padding: 1.25rem;
+}
+
+.panel h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── 14. Log Entries ── */
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.log-entry {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    transition: background 0.15s;
+    animation: fadeIn 0.3s ease;
+}
+
+.log-entry:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.log-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.log-dot.booked {
+    background: var(--primary);
+    box-shadow: 0 0 5px var(--primary);
+}
+
+.log-dot.released {
+    background: var(--accent);
+    box-shadow: 0 0 5px var(--accent);
+}
+
+.log-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.log-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.log-meta {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+}
+
+.log-time {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ── 15. Legend ── */
+.legend {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.legend-dot.available {
+    background: rgba(16, 185, 129, 0.4);
+    border: 1px solid var(--accent);
+}
+
+.legend-dot.occupied {
+    background: rgba(239, 68, 68, 0.4);
+    border: 1px solid var(--danger);
+}
+
+/* ── 16. Modal ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    width: 95%;
+    max-width: 440px;
+    padding: 1.75rem;
+    transform: scale(0.94) translateY(8px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.modal-overlay.open .modal {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.modal-header h2 {
+    font-size: 1.15rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--danger);
+}
+
+.modal-footer {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+}
+
+.slot-info-box {
+    padding: 0.875rem 1rem;
+    background: rgba(99, 102, 241, 0.07);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+.slot-info-box strong {
+    color: var(--text);
+}
+
+/* ── 17. Toast ── */
+.toast-wrap {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(13, 19, 35, 0.97);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    font-size: 0.83rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    max-width: 300px;
+    animation: toastIn 0.35s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+}
+
+.toast.hide {
+    animation: toastOut 0.25s ease forwards;
+}
+
+.toast-success {
+    border-left: 3px solid var(--accent);
+}
+
+.toast-error {
+    border-left: 3px solid var(--danger);
+}
+
+.toast-info {
+    border-left: 3px solid var(--primary);
+}
+
+.toast-success i {
+    color: var(--accent);
+}
+
+.toast-error i {
+    color: var(--danger);
+}
+
+.toast-info i {
+    color: var(--primary);
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastOut {
+    to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+}
+
+/* ── 18. Search Page Specific ── */
+.search-box-wrap {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.25rem;
+}
+
+.algo-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.result-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    padding: 0.75rem 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+}
+
+.result-meta-bar strong {
+    color: var(--text);
+}
+
+/* ── 19. Algorithm Info Cards ── */
+.algo-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.algo-info-card {
+    padding: 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+}
+
+.algo-info-card h4 {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.code-chip {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+}
+
+/* ── 20. Empty State ── */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    gap: 0.5rem;
+}
+
+.empty-state i {
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.empty-state p {
+    font-size: 0.85rem;
+    max-width: 240px;
+}
+
+/* ── 21. Table (Logs page) ── */
+.log-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.4rem;
+}
+
+.log-table th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 0 0.75rem 0.5rem;
+    text-align: left;
+}
+
+.log-table td {
+    padding: 0.75rem;
+    font-size: 0.82rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.log-table td:first-child {
+    border-left: 1px solid var(--border);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.log-table td:last-child {
+    border-right: 1px solid var(--border);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.log-table tr:hover td {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── 22. Responsive ── */
+@media (max-width: 768px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+        grid-template-areas: "nav" "main";
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.mobile-open {
+        display: flex;
+        position: fixed;
+        left: 0;
+        top: var(--nav-h);
+        bottom: 0;
+        width: var(--sidebar-w);
+        z-index: 200;
+        border-right: 1px solid var(--border-bright);
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .lot-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── 23. Scrollbar ── */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}

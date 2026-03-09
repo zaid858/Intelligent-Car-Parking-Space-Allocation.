@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkX — Activity Logs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <header class="topbar">
+            <div class="topbar-logo"><i class="fas fa-square-parking"></i> ParkX</div>
+            <div class="topbar-right">
+                <span class="topbar-time" id="liveClock">—</span>
+                <button class="topbar-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <span class="sidebar-section-label">Navigation</span>
+            <a href="index.html" class="sidebar-link"><i class="fas fa-table-cells"></i> Dashboard</a>
+            <a href="search.html" class="sidebar-link"><i class="fas fa-magnifying-glass"></i> Search</a>
+            <a href="logs.html" class="sidebar-link active"><i class="fas fa-clock-rotate-left"></i> Activity Logs</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <div class="page-title">Activity Logs</div>
+                    <div class="page-subtitle">Complete history of all parking events — newest first</div>
+                </div>
+                <div style="display:flex; gap:0.6rem; align-items:center;">
+                    <select id="logFilter" class="form-control" style="width:155px;">
+                        <option value="">All Events</option>
+                        <option value="Booked">Booked only</option>
+                        <option value="Released">Released only</option>
+                    </select>
+                    <button class="btn btn-danger btn-sm" id="clearLogsBtn">
+                        <i class="fas fa-trash-can"></i> Clear Logs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-row" style="grid-template-columns:repeat(3,1fr); max-width:560px; margin-bottom:1.5rem;">
+                <div class="stat-card card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon blue"><i class="fas fa-list"></i></div>
+                    </div>
+                    <div class="stat-val" id="logTotal">0</div>
+                    <div class="stat-lbl">Total Events</div>
+                </div>
+                <div class="stat-card card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon blue"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <div class="stat-val" id="logBooked" style="color:var(--primary);">0</div>
+                    <div class="stat-lbl">Bookings</div>
+                </div>
+                <div class="stat-card card">
+                    <div class="stat-icon-row">
+                        <div class="stat-icon green"><i class="fas fa-lock-open"></i></div>
+                    </div>
+                    <div class="stat-val" id="logReleased" style="color:var(--accent);">0</div>
+                    <div class="stat-lbl">Releases</div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <section class="card" style="padding:1.5rem; overflow-x:auto;">
+                <table class="log-table" id="logTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event</th>
+                            <th>Slot</th>
+                            <th>Type</th>
+                            <th>Plate No.</th>
+                            <th>Owner</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody"></tbody>
+                </table>
+                <div id="logEmpty" class="empty-state" style="display:none;">
+                    <i class="fas fa-clock-rotate-left"></i>
+                    <p>No activity yet. Go to the Dashboard and book a slot.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast-wrap" class="toast-wrap"></div>
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/logs.js"></script>
+</body>
+
+</html>
