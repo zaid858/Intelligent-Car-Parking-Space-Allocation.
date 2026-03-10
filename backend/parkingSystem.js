@@ -2,6 +2,7 @@
  * =============================================================
  * BACKEND: ParkingSystem — Core System Controller
  * =============================================================
+ *
  * This is the main backend engine for Intelligent Car Parking Space Allocation.
  * It ties together all algorithms and data structures:
  *
@@ -16,6 +17,7 @@
  * =============================================================
  */
 
+// Course Outcome 5: ES6 modules
 import ParkingHashMap     from './hashMap.js';
 import ActivityLinkedList from './linkedList.js';
 import { sortSlots }      from './quickSort.js';
@@ -34,6 +36,7 @@ const SLOT_TYPES = [
     { type: 'EV',       price: 35, icon: '⚡' },
 ];
 
+// Course Outcome 3: Objects & Object inheritance
 class ParkingSystem {
     /**
      * @param {number} totalSlots - Number of slots to initialize
@@ -66,6 +69,7 @@ class ParkingSystem {
         }
     }
 
+    // Course Outcome 4: Browser storage (localStorage)
     /**
      * Persist current state to localStorage after every write.
      * @private
@@ -194,6 +198,7 @@ class ParkingSystem {
     }
 
     // ─────────────────────────── Querying ──────────────────────
+    // Course Outcome 3: Array methods, Filters, Object access
 
     /**
      * Get all slots as an array (from HashMap buckets).
@@ -245,6 +250,7 @@ class ParkingSystem {
     }
 
     // ─────────────────────────── Sorting ───────────────────────
+    // Course Outcome 3: Callback functions, O(n log n) algorithms
 
     /**
      * Sort all slots using the Quick Sort algorithm.
@@ -259,6 +265,8 @@ class ParkingSystem {
     }
 
     // ─────────────────────────── Searching ─────────────────────
+    // Course Outcome 3: Algorithms (Binary Search, Linear Search)
+    // Course Outcome 4: Optimize page load with O(log n) search
 
     /**
      * Binary Search by exact slot ID — O(log n).
@@ -284,7 +292,7 @@ class ParkingSystem {
     }
 
     // ─────────────────────────── Logs ──────────────────────────
-
+    // Course Outcome 3: LinkedList traversal and array methods
     /**
      * Get recent log entries (LinkedList tail traversal) — O(limit).
      * @param {number} limit

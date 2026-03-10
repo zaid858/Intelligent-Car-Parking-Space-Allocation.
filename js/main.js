@@ -1,5 +1,7 @@
+// Course Outcome 5: ES6 modules
 import ParkingSystem from '../DSA/parkingSystem.js';
 
+// Course Outcome 4: DOM Manipulation - document.getElementById for element selection
 // Initialize the system
 const system = new ParkingSystem(20);
 
@@ -19,6 +21,7 @@ const carSearch = document.getElementById('car-search');
 
 let currentSlotId = null;
 
+// Course Outcome 4: DOM Manipulation & Event handling
 /**
  * Update the UI stats
  */
@@ -32,6 +35,7 @@ function updateStats() {
     occupiedSlotsEl.textContent = occupied;
 }
 
+// Course Outcome 4: DOM Manipulation (createElement, innerHTML), Loops
 /**
  * Render the parking grid
  */
@@ -58,6 +62,7 @@ function renderGrid(slots = null) {
     });
 }
 
+// Course Outcome 4: DOM Manipulation, Array methods (forEach)
 /**
  * Render activity logs
  * Uses LinkedList traversal
@@ -85,6 +90,8 @@ function renderLogs() {
     });
 }
 
+// Course Outcome 4: Event handling (user interactions)
+// Course Outcome 5: Form validation with JavaScript
 /**
  * Handle Slot Click
  */
@@ -104,6 +111,7 @@ function handleSlotClick(slot) {
     }
 }
 
+// Course Outcome 4: DOM Manipulation - Update entire UI from data changes
 /**
  * Update all UI components
  */
@@ -113,7 +121,9 @@ function updateUI() {
     renderLogs();
 }
 
-// Event Listeners
+// Course Outcome 4: Event handling (addEventListener, click, change events)
+// Course Outcome 5: Form validation & user input handling
+// ── Event Listeners
 confirmBookingBtn.addEventListener('click', () => {
     const carNumber = carNumberInput.value.trim();
     if (!carNumber) {

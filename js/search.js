@@ -56,6 +56,7 @@ function slotCardHTML(slot, query = '') {
     `;
 }
 
+// Course Outcome 4: DOM Manipulation (innerHTML, grid generation)
 /**
  * Render slots into the result grid.
  */
@@ -71,6 +72,7 @@ function renderResults(slots, query = '') {
     resultGrid.innerHTML = slots.map(s => slotCardHTML(s, query)).join('');
 }
 
+// Course Outcome 4: DOM & Events - Update UI based on search results
 /**
  * Show the result summary bar.
  */
@@ -86,7 +88,8 @@ function showAll() {
     resultMeta.style.display = 'none';
 }
 
-// ─── Search ───────────────────────────────────────────────────
+// Course Outcome 3: Conditions, Functions
+// Course Outcome 4 & 5: Form validation & Search API integration
 function performSearch() {
     const query = searchInput.value.trim();
     if (!query) {
@@ -123,8 +126,8 @@ function performSearch() {
         }
     }
 }
-
-// ─── Sort ─────────────────────────────────────────────────────
+// Course Outcome 3: Callback functions (arrow functions)
+// Course Outcome 4: Event handling & DOM updates// ─── Sort ─────────────────────────────────────────────────────
 sortBtn.addEventListener('click', () => {
     const field  = sortField.value;
     const dir    = sortDir.value;
@@ -135,8 +138,7 @@ sortBtn.addEventListener('click', () => {
     showMeta(sorted.length, `Sorted by ${field} ${dirLabel}`);
     showToast(`Sorted ${sorted.length} slots by ${field}.`, 'info');
 });
-
-// ─── Events ────────────────────────────────────────────────────
+// Course Outcome 4: Event handling - KeyUp, Click events// ─── Events ────────────────────────────────────────────────────
 searchBtn.addEventListener('click', performSearch);
 searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') performSearch(); });
 clearBtn.addEventListener('click', () => {

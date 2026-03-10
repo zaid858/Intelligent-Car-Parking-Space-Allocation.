@@ -2,6 +2,11 @@
  * =============================================================
  * BACKEND MODULE: Doubly Linked List
  * =============================================================
+ * Course Outcome 3: JavaScript Objects & Arrays
+ *   - Object-oriented design with Node class
+ *   - Node references (pointers) and structural patterns
+ *   - Array-like collections with custom data structures
+ *
  * Purpose  : Efficient O(1) append and O(n) traversal
  *            for the activity log (newest-first or full history).
  * Algorithm: Doubly Linked List with head/tail pointers
@@ -10,6 +15,7 @@
  */
 
 // ─── Node class ───────────────────────────────────────────────
+// Course Outcome 3: Objects, Object-oriented design, Constructors
 class ListNode {
     /**
      * @param {object} data - Any payload (log entry, etc.)
@@ -22,6 +28,7 @@ class ListNode {
 }
 
 // ─── Doubly Linked List ────────────────────────────────────────
+// Course Outcome 3: Objects, Object inheritance, Custom data structures
 class ActivityLinkedList {
     constructor() {
         this.head = null; // oldest entry
@@ -30,7 +37,7 @@ class ActivityLinkedList {
     }
 
     // ─── Core operations ──────────────────────────────────────
-
+    // Course Outcome 3: Array-like methods, Object references
     /**
      * Append a log entry to the TAIL (newest end).
      * Time complexity: O(1)

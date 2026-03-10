@@ -2,6 +2,11 @@
  * =============================================================
  * BACKEND MODULE: Quick Sort
  * =============================================================
+ * Course Outcome 3: JavaScript Programming Essentials
+ *   - Functions and recursive algorithms
+ *   - Callback functions (compareFn for custom sorting)
+ *   - Array manipulation and in-place modifications
+ *
  * Purpose  : Sort an array of slot objects by any field.
  * Algorithm: In-place Quick Sort with:
  *   - Median-of-Three pivot selection  → reduces worst-case
@@ -12,6 +17,7 @@
  * =============================================================
  */
 
+// Course Outcome 3: Callback functions, Functions, Array manipulation
 /**
  * Choose a pivot using the Median-of-Three heuristic.
  * Reduces worst-case likelihood on already-sorted data.
@@ -32,6 +38,7 @@ function medianOfThree(arr, low, high, compareFn) {
     return arr[high - 1];
 }
 
+// Course Outcome 3: Functions, Conditions, Array destructuring
 /**
  * Lomuto partition scheme.
  * Moves elements <= pivot to the left, > pivot to the right.
@@ -52,6 +59,7 @@ function partition(arr, low, high, compareFn) {
     return i + 1;
 }
 
+// Course Outcome 3: Loops, Conditions, Array access patterns
 /**
  * Insertion sort — used as a base-case for tiny sub-arrays (< 10 elements).
  * Outperforms Quick Sort at very small array sizes due to low overhead.

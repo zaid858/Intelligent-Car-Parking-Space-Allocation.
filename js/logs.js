@@ -1,6 +1,15 @@
 /**
  * logs.js — Activity Logs Page Controller
  *
+ * Course Outcome 4: JavaScript Interactivity & DOM
+ *   - DOM Manipulation (creating table rows, updating elements)
+ *   - Event handling (click listeners on filter buttons)
+ *   - Asynchronous programming (localStorage integration)
+ *
+ * Course Outcome 5: Forms & API Integration
+ *   - Form validation with JavaScript
+ *   - Handling user input dynamically (filter selection)
+ *
  * DSA integration:
  *  ┌────────────────────────────────────────────────────────────┐
  *  │  system.getAllLogs() → LinkedList head→tail traversal O(n) │
@@ -13,6 +22,7 @@ import { showToast } from './toast.js';
 
 const system = new ParkingSystem();
 
+// Course Outcome 4: DOM Manipulation & element selection
 // ─── DOM ───────────────────────────────────────────────────────
 const logTableBody = document.getElementById('logTableBody');
 const logEmpty     = document.getElementById('logEmpty');
@@ -22,6 +32,8 @@ const logTotal     = document.getElementById('logTotal');
 const logBooked    = document.getElementById('logBooked');
 const logReleased  = document.getElementById('logReleased');
 
+// Course Outcome 3: Array methods (filter, map, reverse)
+// Course Outcome 4: DOM manipulation (innerHTML, table generation)
 // ─── Render ────────────────────────────────────────────────────
 function renderLogs() {
     // getAllLogs() does head→tail traversal (oldest first).
@@ -79,8 +91,7 @@ function renderLogs() {
         `;
     }).join('');
 }
-
-// ─── Clear Logs ────────────────────────────────────────────────
+// Course Outcome 4: Event handling (click listeners)// ─── Clear Logs ────────────────────────────────────────────────
 clearLogsBtn.addEventListener('click', () => {
     if (!confirm('Clear all activity logs? Slot bookings will remain intact.')) return;
 
@@ -90,8 +101,7 @@ clearLogsBtn.addEventListener('click', () => {
     showToast('Activity log cleared.', 'info');
     renderLogs();
 });
-
-// ─── Filter ────────────────────────────────────────────────────
+// Course Outcome 4: Event handling (change event listener)// ─── Filter ────────────────────────────────────────────────────
 logFilter.addEventListener('change', renderLogs);
 
 // ─── Init ──────────────────────────────────────────────────────

@@ -1,9 +1,13 @@
 /**
  * nav.js — Shared utility: live clock + mobile sidebar toggle
  * Loaded as a regular script (<script src>), not a module.
+ *
+ * Course Outcome 4: JavaScript Interactivity & DOM
+ *   - DOM Manipulation (sidebar.classList.toggle, element selection)
+ *   - Event handling (click listeners on buttons and links)
+ *   - Timing & Execution (setInterval for live clock)
  */
-(function () {
-    // ── Live clock ──────────────────────────────────────────
+(function () {    // Course Outcome 4: Timing & setInterval for continuous updates    // ── Live clock ──────────────────────────────────────────
     const clockEl = document.getElementById('liveClock');
     function tick() {
         if (clockEl) {
@@ -13,8 +17,7 @@
     }
     tick();
     setInterval(tick, 1000);
-
-    // ── Mobile sidebar toggle ──────────────────────────────
+    // Course Outcome 4: Event handling (click listeners), classList manipulation    // ── Mobile sidebar toggle ──────────────────────────────
     const btn     = document.getElementById('mobileMenuBtn');
     const sidebar = document.getElementById('sidebar');
     if (btn && sidebar) {

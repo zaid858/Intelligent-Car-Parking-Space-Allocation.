@@ -2,6 +2,11 @@
  * =============================================================
  * BACKEND MODULE: HashMap (Hash Table)
  * =============================================================
+ * Course Outcome 3: JavaScript Objects & Arrays
+ *   - Object-oriented design with hash function
+ *   - Bucket array management and collision handling (chaining)
+ *   - Array methods and key-value storage patterns
+ *
  * Purpose  : O(1) average-case insertion, deletion, and lookup
  *            for parking slot storage.
  * Algorithm: djb2-style polynomial rolling hash with chaining
@@ -20,6 +25,7 @@ class ParkingHashMap {
     }
 
     // ─── Private: hash function ────────────────────────────────
+    // Course Outcome 3: Functions, Operators, Object methods
     /**
      * Converts a string key to a bucket index using a polynomial
      * rolling hash (djb2-style).
@@ -35,7 +41,7 @@ class ParkingHashMap {
     }
 
     // ─── Core map operations ───────────────────────────────────
-
+    // Course Outcome 3: Objects, Array methods, Custom data structures
     /**
      * Insert or update a key-value pair.  O(1) average.
      * @param {string} key

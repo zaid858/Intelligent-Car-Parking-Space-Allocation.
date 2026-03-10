@@ -9,12 +9,14 @@
  *  └─────────────────────────────────────────────────────────┘
  */
 
+// Course Outcome 5: ES6 modules - Import and modular design
 import ParkingSystem from '../backend/parkingSystem.js';
 import { showToast } from './toast.js';
 
 // ─── System (Singleton, persists to localStorage) ──────────────
 const system = new ParkingSystem(30);
 
+// Course Outcome 4: DOM Manipulation & Event handling
 // ─── DOM refs ──────────────────────────────────────────────────
 const slotGrid      = document.getElementById('slotGrid');
 const sidebarLogs   = document.getElementById('sidebarLogs');
@@ -54,6 +56,7 @@ const confirmRelease  = document.getElementById('confirmRelease');
 // ─── State ─────────────────────────────────────────────────────
 let pendingSlotId = null;
 
+// Course Outcome 3: Basic expressions, operators, and Functions (Arrow functions)
 // ─── Stats render ──────────────────────────────────────────────
 function renderStats() {
     const s = system.getStats();
@@ -67,8 +70,8 @@ function renderStats() {
     statOccupiedPct.textContent = `${occupiedPct}%`;
     statRevenue.textContent     = `$${s.revenue}`;
 }
-
-// ─── Slot Grid render ──────────────────────────────────────────
+// Course Outcome 3: Array methods (filter), Conditions
+// Course Outcome 4: Optimize performance with Quick Sort// ─── Slot Grid render ──────────────────────────────────────────
 function getFilteredSorted() {
     let slots = system.getAllSlots();
 
@@ -95,6 +98,7 @@ function getFilteredSorted() {
     return slots;
 }
 
+// Course Outcome 4: DOM Manipulation (creating slot cards with HTML strings)
 /**
  * Build a single slot card HTML string.
  */
@@ -115,6 +119,7 @@ function slotCardHTML(slot) {
     `;
 }
 
+// Course Outcome 4: DOM Manipulation, Event handling (click, keydown events)
 function renderGrid() {
     const slots = getFilteredSorted();
     if (slots.length === 0) {
@@ -154,8 +159,8 @@ function renderGrid() {
         });
     });
 }
-
-// ─── Sidebar Logs ──────────────────────────────────────────────
+// Course Outcome 3: Array methods (filter, map)
+// Course Outcome 4: LinkedList traversal performance// ─── Sidebar Logs ──────────────────────────────────────────────
 function renderSidebarLogs() {
     // Uses LinkedList tail traversal — getRecentLogs()
     const logs = system.getRecentLogs(6);
@@ -178,8 +183,8 @@ function renderSidebarLogs() {
         </div>
     `).join('');
 }
-
-// ─── Type Breakdown ─────────────────────────────────────────────
+// Course Outcome 3: Array methods (filter, map), Calculations
+// Course Outcome 4: DOM Manipulation with dynamic content// ─── Type Breakdown ─────────────────────────────────────────────
 function renderBreakdown() {
     const slots  = system.getAllSlots();
     const types  = ['Standard','Compact','Premium','Handicap','EV'];

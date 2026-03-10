@@ -2,6 +2,13 @@
  * =============================================================
  * BACKEND MODULE: Binary Search & Linear Search
  * =============================================================
+ * Course Outcome 3: JavaScript Programming Essentials
+ *   - Functions (binarySearchById, linearSearch)
+ *   - Callback patterns (compareFn parameter)
+ * 
+ * Course Outcome 4: DOM & Events + Performance Optimization
+ *   - O(log n) performance for responsive search results
+ *
  * Purpose  : Slot lookup algorithms used by the Search page.
  *
  * Binary Search  — O(log n)  — exact slot ID on a sorted array
@@ -14,6 +21,8 @@
 
 // ─── Binary Search ─────────────────────────────────────────────
 
+// Course Outcome 3: Functions, Loops, Expressions and Operators
+// Course Outcome 4: Optimize page load times with O(log n) performance
 /**
  * Classic iterative Binary Search.
  * REQUIRES the input array to be sorted by 'id' field (ascending).
@@ -50,6 +59,7 @@ export function binarySearchById(sortedSlots, targetId) {
 
 // ─── Linear Search ─────────────────────────────────────────────
 
+// Course Outcome 3: Loops, Conditions, Array Methods
 /**
  * Linear Search (brute-force) — works on UNSORTED arrays.
  * Supports partial matching on slot ID or vehicle plate number.
