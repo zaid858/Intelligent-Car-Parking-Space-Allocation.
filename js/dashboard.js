@@ -10,7 +10,7 @@
  */
 
 // Course Outcome 5: ES6 modules - Import and modular design
-import ParkingSystem from '../backend/parkingSystem.js';
+import ParkingSystem from '../DSA/parkingSystem.js';
 import { showToast } from './toast.js';
 
 // ─── System (Singleton, persists to localStorage) ──────────────

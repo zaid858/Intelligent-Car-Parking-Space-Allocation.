@@ -17,7 +17,7 @@
  *  └────────────────────────────────────────────────────────────┘
  */
 
-import ParkingSystem from '../backend/parkingSystem.js';
+import ParkingSystem from '../DSA/parkingSystem.js';
 import { showToast } from './toast.js';
 
 const system = new ParkingSystem();
