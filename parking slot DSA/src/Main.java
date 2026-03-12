@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// CO 2 Lists: Applications of lists (Program implements an overarching application of various Abstract Data Types)
 public class Main {
     
     public static boolean isValidVehicleNumber(String num) {
@@ -8,6 +9,7 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // CO 2 Lists: Abstract Data Types (ADTs)
         ParkingLot lot = new ParkingLot(5);
         WaitingQueue queue = new WaitingQueue();
 
