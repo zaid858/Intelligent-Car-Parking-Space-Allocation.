@@ -4,6 +4,8 @@ public class ParkingLot {
     Vehicle[] slots;
     int capacity;
     int count;
+    // CO 3 Stacks And Queues: Stack ADT, Operations
+    // CO 2 Lists: Abstract Data Types (ADTs), List ADT, Linked list implementation (used as base for Stacks)
     Stack<Vehicle> history = new Stack<>();
 
     public ParkingLot(int capacity) {
@@ -20,7 +22,7 @@ public class ParkingLot {
 
         Vehicle v = new Vehicle(number, owner);
         slots[count] = v;
-        history.push(v);
+        history.push(v); // CO3: Stack Push Operation
         count++;
 
         System.out.println("Vehicle Parked Successfully");
@@ -42,6 +44,7 @@ public class ParkingLot {
         System.out.println("Vehicle Not Found");
     }
 
+    // CO 1 Searching and Sorting: Searching – Linear Search analysis
     public void searchVehicle(String number) {
         for(int i = 0; i < count; i++) {
             if(slots[i].number.equals(number)) {
@@ -65,17 +68,19 @@ public class ParkingLot {
     }
 
     public void sortVehicles() {
+        // CO 1 Searching and Sorting: Bubble sort
         Sort.bubbleSort(slots, count);
         System.out.println("Vehicles Sorted");
     }
 
+    // CO 3 Stacks And Queues: Stack ADT, Operations
     public void undoLastPark() {
         if(history.isEmpty()) {
             System.out.println("No history");
             return;
         }
 
-        Vehicle v = history.pop();
+        Vehicle v = history.pop(); // CO3: Stack Pop Operation
         removeVehicle(v.number);
         System.out.println("Undo Successful");
     }
